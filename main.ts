@@ -7,30 +7,45 @@ const here = fileURLToPath(new URL('.', import.meta.url));
 const out = process.env.MAKEFUN_OUTPUT_DIR ?? '/output';
 const appDir = join(here, 'app');
 const screenshotDir = join(here, 'screenshots');
-const trophyData = JSON.parse(readFileSync(join(appDir, 'data/trophies.json'), 'utf8'));
-const shots = JSON.parse(readFileSync(join(here, 'shots.json'), 'utf8'));
+let trophyData: { trophies?: Array<{ id: number; grade: string }> };
+let shots: Array<{ file: string }>;
+
+try {
+  trophyData = JSON.parse(readFileSync(join(appDir, 'data/trophies.json'), 'utf8'));
+} catch (error) {
+  throw new Error('Unable to parse app/data/trophies.json.', { cause: error });
+}
 if (!Array.isArray(trophyData.trophies) || trophyData.trophies.length !== 55) {
   throw new Error(`Expected exactly 55 trophies; found ${trophyData.trophies?.length ?? 'no trophy list'}.`);
 }
-const expectedGrades = { bronze: 46, gold: 2, platinum: 1, silver: 6 };
-const gradeCounts = Object.fromEntries(
-  Object.entries(trophyData.trophies.reduce((counts: Record<string, number>, trophy: { grade: string }) => {
-    counts[trophy.grade] = (counts[trophy.grade] ?? 0) + 1;
-    return counts;
-  }, {})).sort(([a], [b]) => a.localeCompare(b)),
-);
 
-if (JSON.stringify(gradeCounts) !== JSON.stringify(expectedGrades)) {
-  throw new Error(`Unexpected trophy grades: ${JSON.stringify(gradeCounts)}.`);
+try {
+  shots = JSON.parse(readFileSync(join(here, 'shots.json'), 'utf8'));
+} catch (error) {
+  throw new Error('Unable to parse shots.json.', { cause: error });
 }
 if (!Array.isArray(shots) || shots.length < 3 || shots.length > 4) {
   throw new Error('shots.json must name three or four screenshots.');
 }
-const screenshotFacts = shots.map((shot: { file: string }) => {
-  const file = join(screenshotDir, shot.file);
-  if (!existsSync(file) || !statSync(file).isFile()) throw new Error(`Screenshot named in shots.json is missing: ${shot.file}`);
-  return { file: shot.file, bytes: statSync(file).size };
+
+const screenshotFacts = shots.map(({ file }) => {
+  const path = join(screenshotDir, file);
+  if (!existsSync(path) || !statSync(path).isFile()) {
+    throw new Error(`Screenshot named in shots.json is missing: ${file}`);
+  }
+  return { file, bytes: statSync(path).size };
 });
+
+const gradeCounts = Object.fromEntries(
+  Object.entries(trophyData.trophies.reduce((counts: Record<string, number>, trophy) => {
+    counts[trophy.grade] = (counts[trophy.grade] ?? 0) + 1;
+    return counts;
+  }, {})).sort(([a], [b]) => a.localeCompare(b)),
+);
+const expectedGrades = { bronze: 46, gold: 2, platinum: 1, silver: 6 };
+if (JSON.stringify(gradeCounts) !== JSON.stringify(expectedGrades)) {
+  throw new Error(`Unexpected trophy grades: ${JSON.stringify(gradeCounts)}.`);
+}
 
 mkdirSync(out, { recursive: true });
 cpSync(appDir, join(out, 'app'), { recursive: true });
@@ -43,7 +58,7 @@ const dossier = JSON.parse(Buffer.from(buildDossier(out, {
   app_max_files: 993,
   app_max_bytes: 50331648,
 })).toString('utf8'));
-const facts = [
+dossier.text += [
   '',
   '',
   '## Entry facts',
@@ -53,7 +68,6 @@ const facts = [
   ...screenshotFacts.map(({ file, bytes }) => `- ${file}: ${bytes} bytes`),
   '',
 ].join('\n');
-dossier.text += facts;
 if (Buffer.byteLength(dossier.text, 'utf8') > 163840) {
   throw new Error('Dossier text exceeded the configured 163840-byte limit after adding entry facts.');
 }

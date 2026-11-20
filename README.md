@@ -4,7 +4,7 @@
 [![rank](https://make.fun/badge/gta6-trophy-guide-01/z25441925/gta6-trophy-guide/rank.svg)](https://make.fun/bounty/gta6-trophy-guide-01/leaderboard?utm_source=github&utm_medium=readme&utm_campaign=gta6-trophy-guide-01)
 [![reward](https://make.fun/badge/gta6-trophy-guide-01/z25441925/gta6-trophy-guide/reward.svg)](https://make.fun/bounty/gta6-trophy-guide-01?utm_source=github&utm_medium=readme&utm_campaign=gta6-trophy-guide-01)
 
-VICE TRACKER is an offline trophy companion for the complete 55-trophy PlayStation 5 list. Track and filter progress, follow a five-phase platinum route, and read an individual field guide for every requirement. Progress stays in your browser and can be exported or imported as JSON. Its hand-built Vice City sunset, palm silhouettes and neon details are drawn in CSS and inline SVG, with no external assets, build step or network dependency.
+VICE TRACKER is an offline companion for all 55 Grand Theft Auto VI PlayStation 5 trophies. Check off your progress, follow a five-phase route to the platinum, and open a focused guide for every requirement. Search and filter by grade or trophy kind, reveal story spoilers when you’re ready, and move progress between browsers with JSON export and import. The Vice City sunset, palm silhouettes, and neon details are drawn in CSS and inline SVG; the app makes no outside requests and needs no build step.
 
 ## Run it
 
