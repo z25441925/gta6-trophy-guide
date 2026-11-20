@@ -8,6 +8,8 @@ VICE TRACKER is an offline companion for all 55 Grand Theft Auto VI PlayStation 
 
 ## Run it
 
+Requires Node.js 22.18+ or 23.6+ for built-in TypeScript type stripping.
+
 Run `node serve.ts`, then open http://localhost:8080.
 
 Entered on [make.fun](https://make.fun/bounty/gta6-trophy-guide-01?utm_source=github&utm_medium=readme&utm_campaign=gta6-trophy-guide-01).

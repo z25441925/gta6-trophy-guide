@@ -1,6 +1,6 @@
 [
   { "file": "1-vice-tracker.jpg", "path": "/", "viewport": { "width": 1280, "height": 1000 } },
-  { "file": "2-platinum-roadmap.jpg", "path": "/?view=roadmap&spoilers=1", "viewport": { "width": 1280, "height": 2600 } },
-  { "file": "3-field-guide.jpg", "path": "/?view=guides&spoilers=1&guide=34&expand=1", "viewport": { "width": 1280, "height": 980 } },
+  { "file": "2-platinum-roadmap.jpg", "path": "/?view=roadmap&spoilers=1&compact=1", "fullPage": true, "viewport": { "width": 1280, "height": 2750 } },
+  { "file": "3-field-guide.jpg", "path": "/?view=guides&spoilers=1&search=Retail%20Therapy&guide=34&expand=1", "viewport": { "width": 1280, "height": 980 } },
   { "file": "4-trophy-detail.jpg", "path": "/?search=Catch%20Me%20If%20You%20Can", "viewport": { "width": 1280, "height": 850 } }
 ]

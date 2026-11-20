@@ -3,89 +3,65 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#111522">
-  <meta name="description" content="An offline trophy tracker and platinum roadmap for the Grand Theft Auto VI PlayStation 5 list.">
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='28' fill='%23ff63ba'/%3E%3Cpath d='M8 48h48' stroke='%2354e6d3' stroke-width='5'/%3E%3C/svg%3E">
-  <title>VICE TRACKER — GTA VI trophy guide</title>
+  <meta name="theme-color" content="#160f2c">
+  <title>VICE TRACKER · Leonida trophy log</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="sky" aria-hidden="true"><div class="sun"></div><div class="skyline"></div></div>
+  <div class="sky" aria-hidden="true"><div class="sun"></div></div>
   <header class="masthead">
-    <svg class="palm palm-left" viewBox="0 0 170 220" aria-hidden="true">
-      <path d="M66 220Q76 140 86 72M87 73Q53 49 23 66Q47 37 78 52Q57 28 31 25Q65 22 89 46Q84 16 70 3Q98 18 98 49Q119 22 147 22Q122 38 107 57Q141 44 164 57Q128 55 102 73Q136 77 151 97Q121 81 99 84" />
+    <svg class="palm palm-left" viewBox="0 0 170 210" aria-hidden="true">
+      <path d="M92 210C87 150 102 83 92 32M91 46C65 44 31 37 8 16c34 7 61 9 87 18M92 42c17-20 38-32 65-38-17 19-35 34-62 47M92 36C78 20 62 10 39 3c14 17 30 31 53 41M92 44c25 1 50-2 73-16-26-1-49 2-73 16M92 35c-4-15-3-25 1-35 8 11 11 22 3 39" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="5"/>
     </svg>
-    <div class="mast-copy">
-      <p class="eyebrow">LEONIDA · PLAYSTATION 5 · OFFLINE FIELD GUIDE</p>
-      <h1>VICE TRACKER</h1>
-      <p class="hero-deck">Your road to the platinum, one trophy at a time.</p>
+    <svg class="palm palm-right" viewBox="0 0 170 210" aria-hidden="true">
+      <path d="M78 210c8-65-5-130 5-177M83 47C57 42 32 30 9 8c34 9 58 16 77 34M83 40c19-20 42-32 69-37-15 19-37 34-66 48M84 34C71 19 55 9 31 3c13 17 29 31 54 42M82 46c24 2 53-2 77-18-28 1-51 5-77 18M84 37c-5-14-4-26 1-36 8 11 11 24 4 41" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="5"/>
+    </svg>
+    <div class="brandline"><span class="live-dot"></span> LEONIDA FIELD NOTES <span>·</span> PLAYSTATION 5</div>
+    <h1>VICE TRACKER</h1>
+    <p class="subtitle">Your long way to legend.</p>
+    <div class="progress-summary" aria-label="Trophy progress">
+      <div class="progress-card">
+        <div class="progress-copy"><span>COLLECTION</span><strong id="overall-count">0 / 55</strong></div>
+        <div class="progress-track"><div id="overall-bar" class="progress-fill"></div></div>
+      </div>
+      <div class="progress-card platinum-progress">
+        <div class="progress-copy"><span>ROAD TO PLATINUM</span><strong id="platinum-count">0 / 54</strong></div>
+        <div class="progress-track"><div id="platinum-bar" class="progress-fill"></div></div>
+      </div>
     </div>
-    <svg class="palm palm-right" viewBox="0 0 170 220" aria-hidden="true">
-      <path d="M104 220Q94 140 84 72M83 73Q117 49 147 66Q123 37 92 52Q113 28 139 25Q105 22 81 46Q86 16 100 3Q72 18 72 49Q51 22 23 22Q48 38 63 57Q29 44 6 57Q42 55 68 73Q34 77 19 97Q49 81 71 84" />
-    </svg>
   </header>
 
   <main>
-    <section class="progress-panel panel" aria-label="Trophy progress">
-      <div class="progress-heading">
-        <div><p class="eyebrow">YOUR COLLECTION</p><h2 id="progress-count">0 / 55 earned</h2></div>
-        <div class="percent" id="progress-percent">0%</div>
-      </div>
-      <div class="meter" role="progressbar" aria-label="All trophies earned" aria-valuemin="0" aria-valuemax="55" aria-valuenow="0"><span id="overall-meter"></span></div>
-      <div class="platinum-progress">
-        <div class="platinum-label"><span>PLATINUM RUN</span><strong id="platinum-count">0 / 54 other trophies</strong></div>
-        <div class="meter meter-small" role="progressbar" aria-label="Progress towards the platinum" aria-valuemin="0" aria-valuemax="54" aria-valuenow="0"><span id="platinum-meter"></span></div>
-      </div>
-      <p class="progress-note" id="platinum-note">Earn the other 54 trophies to complete the set.</p>
-    </section>
-
-    <nav class="tabs" aria-label="Guide views">
-      <button class="tab active" data-view="tracker" type="button" aria-current="page">Trophy tracker <span>55</span></button>
-      <button class="tab" data-view="roadmap" type="button">Platinum roadmap</button>
-      <button class="tab" data-view="guides" type="button">Field guides</button>
-      <div class="tab-spacer"></div>
-      <label class="spoiler-toggle"><input id="spoiler-setting" type="checkbox"><span class="switch"></span> Reveal story spoilers</label>
-    </nav>
     <div class="notice"><span class="notice-mark">i</span> Missable flags are inferred from the official descriptions.</div>
+    <nav class="tabs" aria-label="Guide views">
+      <button class="tab active" type="button" data-view="tracker" aria-current="page">Trophy tracker <span>55</span></button>
+      <button class="tab" type="button" data-view="roadmap">Platinum roadmap</button>
+      <button class="tab" type="button" data-view="guides">Field guide</button>
+    </nav>
 
-    <section id="tracker-view" class="view">
-      <div class="view-intro">
-        <div><p class="eyebrow">THE TROPHY CASE</p><h2>Every trophy. Your pace.</h2></div>
-        <div class="io-actions">
-          <button id="export" class="button button-primary" type="button">Export progress</button>
-          <label class="button button-quiet import-button">Import JSON<input id="import" type="file" accept="application/json"></label>
-        </div>
-      </div>
-      <div class="filters panel">
-        <label class="search-field"><span class="sr-only">Search trophies</span><span class="search-icon" aria-hidden="true">⌕</span><input id="search" type="search" placeholder="Search trophies, descriptions, guides…" autocomplete="off"></label>
-        <label>GRADE<select id="grade-filter"><option value="all">All grades</option><option value="platinum">Platinum</option><option value="gold">Gold</option><option value="silver">Silver</option><option value="bronze">Bronze</option></select></label>
-        <label>KIND<select id="kind-filter"><option value="all">All kinds</option></select></label>
-        <button id="clear-filters" class="text-button" type="button">Clear</button>
-      </div>
-      <div class="results-line"><span id="results-count" role="status" aria-live="polite" aria-atomic="true">55 trophies</span><span>CHECKLIST · AUTO-SAVED IN THIS BROWSER</span></div>
-      <div id="tracker-list" class="trophy-list" aria-live="polite"></div>
-      <p id="empty-state" class="empty-state" role="status" aria-live="polite" hidden>No trophies match those filters. Try clearing your search.</p>
+    <section class="toolbar" aria-label="Trophy controls">
+      <label class="search-wrap"><span aria-hidden="true">⌕</span><input id="search" type="search" aria-label="Search trophies, details, or guides" placeholder="Search trophies, details, or guides" autocomplete="off"></label>
+      <label class="select-wrap"><span>GRADE</span><select id="grade-filter"><option value="all">All grades</option><option value="platinum">Platinum</option><option value="gold">Gold</option><option value="silver">Silver</option><option value="bronze">Bronze</option></select></label>
+      <label class="select-wrap"><span>KIND</span><select id="kind-filter"><option value="all">All kinds</option></select></label>
+      <label class="spoiler-toggle"><input id="spoiler-toggle" type="checkbox"><span class="switch" aria-hidden="true"></span><span>Reveal story spoilers</span></label>
+      <div class="data-actions"><button id="export" class="button button-muted" type="button">Export</button><label class="button button-muted import-button">Import<input id="import" type="file" accept="application/json"></label></div>
     </section>
+    <p id="status" class="status" role="status" aria-live="polite"></p>
 
-    <section id="roadmap-view" class="view" hidden>
-      <div class="view-intro">
-        <div><p class="eyebrow">A CLEAN RUN THROUGH LEONIDA</p><h2>Platinum roadmap</h2></div>
-        <p class="intro-aside">Five phases, one complete trophy list. Story names are hidden until you reveal spoilers.</p>
-      </div>
-      <div id="roadmap-list" class="roadmap-list"></div>
+    <section id="tracker-view" class="view-panel" aria-label="Trophy tracker">
+      <div class="section-heading"><div><p class="eyebrow">THE COMPLETE LIST</p><h2>Every trophy, in your sights.</h2></div><p id="result-count" class="result-count" aria-live="polite">55 trophies</p></div>
+      <div id="tracker-list" class="trophy-grid"></div>
     </section>
-
-    <section id="guides-view" class="view" hidden>
-      <div class="view-intro">
-        <div><p class="eyebrow">THE OFFICIAL REQUIREMENT, MADE READABLE</p><h2>Field guides</h2></div>
-        <label class="guide-search">FIND A TROPHY<input id="guide-search" type="search" placeholder="Search the field guide…"></label>
-      </div>
+    <section id="roadmap-view" class="view-panel" aria-label="Platinum roadmap" hidden>
+      <div class="section-heading"><div><p class="eyebrow">A ROUTE THROUGH LEONIDA</p><h2>Five phases. One platinum.</h2></div><p id="roadmap-count" class="result-count" aria-live="polite">55 milestones</p></div>
+      <div id="roadmap-list" class="roadmap"></div>
+    </section>
+    <section id="guides-view" class="view-panel" aria-label="Field guide" hidden>
+      <div class="section-heading"><div><p class="eyebrow">NOTES FOR THE ROAD</p><h2>Field guide.</h2></div><p id="guide-count" class="result-count" aria-live="polite">55 entries</p></div>
       <div id="guide-list" class="guide-list"></div>
-      <p id="guide-empty" class="empty-state" role="status" aria-live="polite" hidden>No guide matches that search.</p>
     </section>
-    <p id="feedback" class="feedback" role="status" aria-live="polite"></p>
   </main>
-  <footer><span>VICE TRACKER</span><span>55 official trophies · local progress · no outside requests</span></footer>
+  <footer><span>VICE TRACKER</span><span>Official list reference: Grand Theft Auto VI · PlayStation 5</span></footer>
   <script type="module" src="app.js"></script>
 </body>
 </html>
