@@ -22,14 +22,14 @@ const kinds = [
   { key: 'lifestyle', label: 'Lifestyle & other' },
 ];
 const phases = [
-  { title: 'The story spine & watch-outs', subtitle: 'Start with the campaign; keep missables in view', note: 'Clear the listed campaign milestones in sequence and note the single-run conditions before moving on. Story details remain concealed until revealed or earned.' },
+  { title: 'The story spine & watch-outs', subtitle: 'Start with the campaign; mind the stated conditions', note: 'Clear the listed campaign milestones in sequence. The bundled descriptions do not establish a permanently missable trophy; verify retry limits in-game. Story details remain concealed until revealed or earned.' },
   { title: 'People, pastimes & skill', subtitle: 'Take the side roads', note: 'Work through the listed character strands and activity requirements; the trophy list does not state unlock timing.' },
   { title: 'Leonida, collected', subtitle: 'Sweep the wider map', note: 'Use each trophy’s own stated count as your checklist; no locations beyond those named in the list are assumed.' },
-  { title: 'Heat, hustle & oddities', subtitle: 'Finish the specific conditions', note: 'Handle crime, lifestyle and unusual one-off requirements, paying attention to the visible missable flags.' },
+  { title: 'Heat, hustle & oddities', subtitle: 'Finish the specific conditions', note: 'Handle crime, lifestyle and unusual requirements; follow any sequence or single-use condition exactly as written.' },
   { title: 'The final ledger', subtitle: 'Close the completion check', note: 'Reach the stated 100% completion milestone, complete the final mission, then claim the platinum for the other 54 trophies.' },
 ];
 const guideNotes = {
-  1: 'Keep this as the final stamp on the checklist: its guide line makes the other 54 trophies the full requirement.',
+  1: 'Claim this last: the requirement is all 54 other trophies, not a separate challenge or collectible.',
   2: 'The opening milestone is specific: complete Gone Fishing, the first mission named in the requirement.',
   3: 'Use Chapter 1 as the target; this trophy asks for the chapter to be complete.',
   4: 'The checklist names Chapter 2. Finish that chapter to clear this campaign milestone.',
@@ -48,7 +48,7 @@ const guideNotes = {
   17: 'The requirement is gold in every Shooting Range challenge; the guide line specifies all 42.',
   18: 'Win a Top Fun Drone Race at every location; the guide line calls out 14 locations.',
   19: 'The target is 20 different race wins, so track distinct races rather than repeating one.',
-  20: 'Beat Cal in a fishing challenge; the list does not add another condition.',
+  20: 'This is Cal-specific: complete one of his fishing challenges; general fishing alone is not the stated target.',
   21: 'Finish an arcade game. One completed game is the stated target.',
   22: 'Complete Andy’s final mission to finish this character-specific milestone.',
   23: 'Kenton’s final mission is the requirement; finish it for this trophy.',
@@ -65,7 +65,7 @@ const guideNotes = {
   34: 'Keep the three-shop sequence together: rob them back-to-back with your partner and do not lose the Wanted Level.',
   35: 'Discover vehicles until the total reaches 100.',
   36: 'During one use of Combat Focus, take down five enemies; the single-use condition is essential.',
-  37: 'The named event is an unscheduled departure at VCIA; the trophy text gives no further steps.',
+  37: 'The requirement is an unscheduled departure at VCIA. Neither bundled line names a vehicle or route, so avoid assuming a particular method.',
   38: 'The description identifies Rhinos as the subject. Its guide clarifies that these are tanks.',
   39: 'Rob a jewelry store without being detected. Avoid detection for the full stated condition.',
   40: 'Rob five Bank Vaults and escape; keep the total to the five-vault target.',
@@ -73,12 +73,12 @@ const guideNotes = {
   42: 'Explore all of Leonida; the guide line gives the target as 52 areas.',
   43: 'Rob an Illegal Operation belonging to each gang. The guide line gives nine gangs total.',
   44: 'Enjoy a cocktail with a view on Ocean Beach; both details come directly from the requirement.',
-  45: 'Smash your way out of a vehicle showroom in the classic style named by the trophy.',
+  45: 'The required scene is a smash-out from a vehicle showroom. The bundled text does not define the exact “classic style,” so it is safer not to prescribe a specific vehicle or exit.',
   46: 'Follow through at the Kolt & Associates’ bowling alley; the guide identifies it as playing bowling there.',
-  47: 'The stated clue is a partnership with mass appeal. The bundled guide does not specify a more exact action.',
-  48: 'The requirement points to choices. The bundled guide says PlayStation tracks a count to 500.',
-  49: 'The clue is success on a second try. Keep that exact retry condition in mind.',
-  50: 'Witness something strange; the description frames the moment as an unexpected surprise.',
+  47: 'The bundled clue points to a partnership with mass appeal, but names no action. Treat that clue as the available guidance rather than guessing at a specific event.',
+  48: 'The requirement is choice-based. The bundled note says PlayStation tracks progress to 500, but does not define which choices count.',
+  49: 'The hint makes the second attempt the important one: aim for success on try two. Neither bundled line identifies the activity.',
+  50: 'The description is a reaction to an unexplained event. Look for an unexpected encounter; the bundled text names no location or trigger.',
   51: 'Use a melee drive-by to bowl someone over; both the move and result are in the requirement.',
   52: 'Earn $250,000 by laundering Marked Bills through your contacts; track the stated amount.',
   53: 'Spend $100,000 across all shops. The total is cumulative across the shop category.',
@@ -99,22 +99,10 @@ function kindFor(trophy) {
 
 function phaseFor(trophy) {
   if (trophy.id === 1 || trophy.id === 7 || trophy.id === 14) return 4;
-  if (trophy.missableWindow) return 0;
   if (trophy.kind === 'story' && trophy.id < 22) return 0;
   if (trophy.kind === 'story' || trophy.kind === 'activities' || trophy.kind === 'challenge') return 1;
   if (trophy.kind === 'collectibles' || trophy.kind === 'exploration') return 2;
   return 3;
-}
-
-function missableWindow(trophy) {
-  switch (trophy.id) {
-    case 34: return 'The run depends on robbing 3 shops back-to-back without losing your Wanted Level.';
-    case 36: return 'The requirement is five takedowns in a single use of Combat Focus.';
-    case 37: return 'The trophy calls for an unscheduled departure at VCIA.';
-    case 39: return 'The robbery must be completed without being detected.';
-    case 49: return 'Its description calls for success on the second try.';
-    default: return '';
-  }
 }
 
 function makeElement(tag, className = '', text) {
@@ -140,6 +128,22 @@ function saveProgress() {
   }
 }
 
+function readStorage(key) {
+  try {
+    return localStorage.getItem(key);
+  } catch {
+    return null;
+  }
+}
+
+function savePreference(key, value) {
+  try {
+    localStorage.setItem(key, value);
+  } catch {
+    message('This browser could not save that setting.', true);
+  }
+}
+
 function isHidden(trophy) {
   return trophy.kind === 'story' && !showSpoilers && !earned.has(trophy.id);
 }
@@ -148,18 +152,9 @@ function badge(grade) {
   return makeElement('span', `grade-badge grade-${grade}`, grade);
 }
 
-function appendMissable(parent, trophy) {
-  if (trophy.missableWindow) parent.append(makeElement('span', 'missable-badge', 'Missable'));
-}
-
 function appendGuide(parent, trophy) {
   const copy = makeElement('p', 'field-guide-copy', guideNotes[trophy.id] || trophy.guide);
   parent.append(copy);
-  if (trophy.missableWindow) {
-    const when = makeElement('p', 'missable-window');
-    when.append(makeElement('strong', '', 'When it can be missed: '), document.createTextNode(trophy.missableWindow));
-    parent.append(when);
-  }
   parent.append(makeElement('p', 'guide-citation', SOURCE_LINE));
 }
 
@@ -168,12 +163,14 @@ function makeEarnControl(trophy, hidden = false, compact = false) {
   const checkbox = document.createElement('input');
   checkbox.type = 'checkbox';
   checkbox.checked = earned.has(trophy.id);
+  checkbox.dataset.trophyId = String(trophy.id);
   checkbox.setAttribute('aria-label', hidden ? `Mark concealed story trophy ${trophy.id} as earned` : `Mark ${trophy.name} as earned`);
   checkbox.addEventListener('change', () => {
     if (checkbox.checked) earned.add(trophy.id);
     else earned.delete(trophy.id);
     saveProgress();
     render();
+    document.querySelector(`.view-section:not([hidden]) [data-trophy-id="${trophy.id}"]`)?.focus();
   });
   label.append(checkbox);
   return label;
@@ -190,7 +187,6 @@ function makeTrophyCard(trophy) {
     hidden ? 'Reveal story spoilers or earn this trophy to see its requirement.' : trophy.description);
   const tags = makeElement('div', 'trophy-tags');
   tags.append(badge(trophy.grade), makeElement('span', 'kind-tag', kinds.find((kind) => kind.key === trophy.kind).label));
-  appendMissable(tags, trophy);
   main.append(title, description, tags);
   article.append(makeEarnControl(trophy, hidden), main);
   if (hidden) main.append(makeElement('span', 'hidden-hint', 'Guide hidden'));
@@ -241,19 +237,20 @@ function makeRoadmapCard(trophy) {
   check.type = 'checkbox';
   check.className = 'roadmap-check';
   check.checked = earned.has(trophy.id);
+  check.dataset.trophyId = String(trophy.id);
   check.setAttribute('aria-label', hidden ? `Mark concealed story trophy ${trophy.id} as earned` : `Mark ${trophy.name} as earned`);
   check.addEventListener('change', () => {
     if (check.checked) earned.add(trophy.id);
     else earned.delete(trophy.id);
     saveProgress();
     render();
+    document.querySelector(`.view-section:not([hidden]) [data-trophy-id="${trophy.id}"]`)?.focus();
   });
   const info = makeElement('div', 'roadmap-info');
   info.append(makeElement('h4', hidden ? 'spoiler-text' : '', hidden ? 'Story trophy hidden' : trophy.name));
   info.append(makeElement('p', hidden ? 'spoiler-text' : '', hidden ? 'Reveal spoilers to view this requirement.' : trophy.description));
   const meta = makeElement('div', 'roadmap-meta');
   meta.append(badge(trophy.grade), makeElement('span', 'kind-tag', kinds.find((kind) => kind.key === trophy.kind).label));
-  appendMissable(meta, trophy);
   info.append(meta);
   article.append(check, info);
   return article;
@@ -285,7 +282,6 @@ function renderGuides() {
     const heading = makeElement('div', 'field-guide-heading');
     heading.append(makeElement('span', 'trophy-number', String(trophy.id).padStart(2, '0')));
     heading.append(makeElement('h3', hidden ? 'spoiler-text' : '', hidden ? 'Story trophy hidden' : trophy.name), badge(trophy.grade));
-    appendMissable(heading, trophy);
     item.append(heading);
     if (hidden) item.append(makeElement('p', 'hidden-hint', 'Requirement and guide hidden while story spoilers are off.'));
     else {
@@ -313,6 +309,7 @@ function setView(view) {
     const active = button.dataset.view === valid;
     button.classList.toggle('active', active);
     button.setAttribute('aria-selected', String(active));
+    button.tabIndex = active ? 0 : -1;
   }
   for (const section of document.querySelectorAll('.view-section')) section.hidden = section.id !== `${valid}-view`;
 }
@@ -331,12 +328,12 @@ const response = await fetch('data/trophies.json');
 if (!response.ok) throw new Error(`Trophy data could not be loaded (${response.status}).`);
 const data = await response.json();
 if (!Array.isArray(data.trophies) || data.trophies.length !== 55) throw new Error('The bundled trophy list must contain 55 trophies.');
-const trophies = data.trophies.map((trophy) => ({ ...trophy, kind: kindFor(trophy), missableWindow: missableWindow(trophy) }));
+const trophies = data.trophies.map((trophy) => ({ ...trophy, kind: kindFor(trophy) }));
 const initialQuery = new URLSearchParams(location.search);
 let earned = new Set();
-let showSpoilers = localStorage.getItem(SPOILER_KEY) === 'true' || initialQuery.get('spoilers') === '1';
+let showSpoilers = readStorage(SPOILER_KEY) === 'true' || initialQuery.get('spoilers') === '1';
 try {
-  earned = parseEarned(JSON.parse(localStorage.getItem(STORAGE_KEY) ?? '[]'));
+  earned = parseEarned(JSON.parse(readStorage(STORAGE_KEY) ?? '[]'));
 } catch {
   earned = new Set();
 }
@@ -351,9 +348,22 @@ elements.search.value = initialQuery.get('search') ?? '';
 elements.grade.value = initialQuery.get('grade') ?? 'all';
 elements.kind.value = initialQuery.get('kind') ?? 'all';
 for (const button of document.querySelectorAll('.view-tab')) button.addEventListener('click', () => setView(button.dataset.view));
+document.querySelector('[role="tablist"]').addEventListener('keydown', (event) => {
+  const buttons = [...document.querySelectorAll('.view-tab')];
+  const current = buttons.indexOf(document.activeElement);
+  const nextIndex = event.key === 'ArrowRight' ? (current + 1) % buttons.length
+    : event.key === 'ArrowLeft' ? (current - 1 + buttons.length) % buttons.length
+      : event.key === 'Home' ? 0
+        : event.key === 'End' ? buttons.length - 1
+          : -1;
+  if (nextIndex < 0) return;
+  event.preventDefault();
+  setView(buttons[nextIndex].dataset.view);
+  buttons[nextIndex].focus();
+});
 elements.spoiler.addEventListener('change', () => {
   showSpoilers = elements.spoiler.checked;
-  localStorage.setItem(SPOILER_KEY, String(showSpoilers));
+  savePreference(SPOILER_KEY, String(showSpoilers));
   render();
 });
 elements.search.addEventListener('input', renderTracker);
