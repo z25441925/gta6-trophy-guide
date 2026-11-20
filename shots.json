@@ -1,6 +1,6 @@
 [
-  { "file": "1-vice-tracker.jpg", "path": "/", "state": "tracker hero", "viewport": { "width": 1280, "height": 1000 } },
-  { "file": "2-platinum-roadmap.jpg", "path": "/#roadmap", "state": "story spoilers and missable flags visible", "viewport": { "width": 1280, "height": 1800 } },
-  { "file": "3-field-guide.jpg", "path": "/#guide", "state": "guides visible with missable conditions", "viewport": { "width": 1280, "height": 1000 } },
-  { "file": "4-trophy-detail.jpg", "path": "/#tracker", "state": "search result with expanded trophy guide", "viewport": { "width": 1280, "height": 800 } }
+  { "file": "1-vice-tracker.jpg", "path": "/", "viewport": { "width": 1280, "height": 800 } },
+  { "file": "2-platinum-roadmap.jpg", "path": "/?view=roadmap&spoilers=1", "viewport": { "width": 1280, "height": 1450 } },
+  { "file": "3-field-guide.jpg", "path": "/?view=guides&spoilers=1&guide=34&expand=34", "viewport": { "width": 1280, "height": 800 } },
+  { "file": "4-trophy-detail.jpg", "path": "/?search=Catch%20Me%20If%20You%20Can&spoilers=1", "viewport": { "width": 1280, "height": 800 } }
 ]

@@ -3,103 +3,83 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#100e20">
-  <meta name="description" content="An offline Grand Theft Auto VI trophy guide and progress tracker.">
+  <meta name="theme-color" content="#110d25">
+  <link rel="icon" href="data:,">
   <title>VICE TRACKER — GTA VI Trophy Guide</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header class="hero">
-    <svg class="palm palm-left" viewBox="0 0 180 230" aria-hidden="true">
-      <path d="M75 230C83 178 98 119 111 55" fill="none" stroke="currentColor" stroke-width="8"/>
-      <path d="M111 58C77 39 42 46 12 32c34-5 67 0 96 17C78 25 61 10 54 0c27 11 46 29 59 54 1-27 12-45 26-54-4 22-12 42-22 60 22-19 42-26 63-25-20 12-39 22-62 31 25-2 42 4 57 16-23-4-43-4-64 0 19 6 31 15 39 28-20-10-37-17-55-19-2 44-14 94-22 139" fill="currentColor"/>
+  <div class="skyline" aria-hidden="true"><div class="sun"></div></div>
+  <header class="masthead">
+    <svg class="palm palm-left" viewBox="0 0 170 220" aria-hidden="true">
+      <path d="M92 218C87 167 97 108 111 57l8 2c-8 57-10 110-4 159z"/>
+      <path d="M111 62C84 49 63 31 52 9c24 10 46 21 63 42C99 24 95 8 98 0c16 18 23 37 22 58 11-27 28-43 50-52-10 23-26 43-49 57 29-8 49-7 67-1-20 13-43 18-68 14 22 7 37 20 48 37-27-6-44-18-57-37z"/>
     </svg>
-    <svg class="palm palm-right" viewBox="0 0 180 230" aria-hidden="true">
-      <path d="M75 230C83 178 98 119 111 55" fill="none" stroke="currentColor" stroke-width="8"/>
-      <path d="M111 58C77 39 42 46 12 32c34-5 67 0 96 17C78 25 61 10 54 0c27 11 46 29 59 54 1-27 12-45 26-54-4 22-12 42-22 60 22-19 42-26 63-25-20 12-39 22-62 31 25-2 42 4 57 16-23-4-43-4-64 0 19 6 31 15 39 28-20-10-37-17-55-19-2 44-14 94-22 139" fill="currentColor"/>
-    </svg>
-    <div class="hero-content">
-      <p class="eyebrow"><span class="live-dot"></span> LEONIDA • PLAYSTATION 5 • OFFLINE GUIDE</p>
-      <h1>VICE TRACKER</h1>
-      <p class="hero-copy">Your road to the platinum, one trophy at a time.</p>
+    <div class="masthead-copy">
+      <p class="eyebrow">LEONIDA FIELD NOTES <span>•</span> PLAYSTATION 5</p>
+      <h1>VICE <span>TRACKER</span></h1>
+      <p class="intro">A neon-lit route through every last trophy.</p>
     </div>
-    <div class="sunset-line"></div>
+    <svg class="palm palm-right" viewBox="0 0 170 220" aria-hidden="true">
+      <path d="M79 218c8-54 9-112-2-162l9-2c17 53 24 108 17 164z"/>
+      <path d="M83 58C62 38 53 19 54 0c17 14 29 31 37 52C92 27 107 9 127 0c-4 24-16 45-36 62 25-16 49-21 73-16-16 19-38 31-66 35 28 1 50 10 68 27-27 3-51-3-72-19 18 17 28 37 31 60-22-17-35-38-42-63-1 29-10 50-26 68-4-29 1-54 17-77-19 20-40 31-65 33 15-22 35-37 61-47z"/>
+    </svg>
   </header>
 
   <main>
-    <section class="dashboard" aria-label="Trophy progress">
-      <div class="progress-card">
-        <div class="progress-heading">
-          <div>
-            <p class="eyebrow">YOUR CHECKLIST</p>
-            <h2><span id="earned-count">0</span><span class="muted"> / 55</span></h2>
-            <p id="progress-caption">Trophies earned</p>
-          </div>
-          <div class="percent"><span id="progress-percent">0</span><small>%</small></div>
-        </div>
-        <div class="progress-track" role="progressbar" aria-label="Overall trophy progress" aria-valuemin="0" aria-valuemax="55" aria-valuenow="0">
-          <div class="progress-fill" id="progress-fill"></div>
-        </div>
-        <div class="progress-foot"><span>PLATINUM RUN</span><span id="platinum-progress">0 / 1 platinum</span></div>
+    <section class="dashboard panel" aria-label="Trophy progress">
+      <div class="progress-top">
+        <div><p class="eyebrow">PLATINUM PURSUIT</p><p class="progress-copy"><strong id="earned-count">0</strong><span> / 55 trophies earned</span></p></div>
+        <div class="platinum-state"><span class="platinum-gem">✦</span><span id="platinum-status">IN SIGHT</span><small id="platinum-progress">0 / 1 platinum</small></div>
       </div>
-      <div class="stat-card stat-neon">
-        <span class="stat-symbol">✦</span>
-        <p class="eyebrow">PLATINUM</p>
-        <strong id="platinum-status">LOCKED</strong>
-        <span>Vice Got a Price!</span>
-      </div>
-      <div class="stat-card">
-        <span class="stat-symbol">◈</span>
-        <p class="eyebrow">TROPHIES</p>
-        <strong>55</strong>
-        <span>Official PS5 list</span>
-      </div>
+      <div class="progress-track" role="progressbar" aria-label="Overall trophy progress" aria-valuemin="0" aria-valuemax="55" aria-valuenow="0"><span id="progress-fill"></span></div>
+      <div class="progress-bottom"><span id="progress-percent">0%</span><span>Every mark moves you closer to legend.</span><span id="remaining-count">55 REMAINING</span></div>
     </section>
 
-    <nav class="tabs" aria-label="Guide sections">
-      <a class="tab active" href="#tracker">01 <span>Tracker</span></a>
-      <a class="tab" href="#roadmap">02 <span>Roadmap</span></a>
-      <a class="tab" href="#guide">03 <span>Field guide</span></a>
-    </nav>
-
-    <section id="tracker" class="section-block">
-      <div class="section-heading">
-        <div><p class="eyebrow">THE FULL LIST</p><h2>Trophy tracker <span class="section-count" id="shown-count">55</span></h2></div>
-        <div class="data-actions">
-          <button class="button button-quiet" id="export" type="button">↥ Export</button>
-          <label class="button button-quiet import-button" for="import-file">↧ Import<input id="import-file" type="file" accept="application/json,.json"></label>
-        </div>
+    <section class="toolbar panel">
+      <div class="view-tabs" role="tablist" aria-label="Guide views">
+        <button class="view-tab active" data-view="tracker" role="tab" aria-selected="true">Trophy tracker</button>
+        <button class="view-tab" data-view="roadmap" role="tab" aria-selected="false">Platinum roadmap</button>
+        <button class="view-tab" data-view="guides" role="tab" aria-selected="false">Field guides</button>
       </div>
-      <div class="source-note"><span class="note-icon">i</span><span>Kinds are grouped from the listed descriptions and guide hints. Missable flags are inferred from the official descriptions.</span></div>
-      <div class="filter-panel">
-        <label class="search-wrap"><span aria-hidden="true">⌕</span><span class="sr-only">Search names and descriptions</span><input id="search" type="search" placeholder="Search trophies, requirements…" autocomplete="off"></label>
-        <label class="select-wrap"><span class="sr-only">Filter by grade</span><select id="grade-filter"><option value="all">All grades</option><option value="platinum">Platinum</option><option value="gold">Gold</option><option value="silver">Silver</option><option value="bronze">Bronze</option></select></label>
-        <label class="select-wrap"><span class="sr-only">Filter by kind</span><select id="kind-filter"><option value="all">All kinds</option></select></label>
-        <label class="spoiler-toggle"><input id="spoiler-toggle" type="checkbox"><span class="toggle-ui"></span><span>Show story spoilers</span></label>
+      <div class="toolbar-actions">
+        <label class="spoiler-control"><input id="spoiler-toggle" type="checkbox"><span class="switch"></span><span>Reveal story spoilers</span></label>
+        <button id="export-button" class="button button-quiet" type="button">Export</button>
+        <label class="button button-quiet import-button" for="import-file">Import<input id="import-file" type="file" accept="application/json"></label>
       </div>
-      <div class="trophy-list" id="trophy-list" aria-live="polite"></div>
-      <p id="empty-state" class="empty-state" hidden>No trophies match those filters. Try a broader search.</p>
+      <p class="missable-note">Missable flags are inferred from the official descriptions.</p>
     </section>
 
-    <section id="roadmap" class="section-block roadmap-section">
+    <section id="tracker-view" class="view-section">
       <div class="section-heading">
-        <div><p class="eyebrow">THE LONG GAME</p><h2>Platinum roadmap</h2></div>
-        <span class="roadmap-total">55 TROPHIES • 5 PHASES</span>
+        <div><p class="eyebrow">YOUR CHECKLIST</p><h2>All trophies <span id="shown-count">55</span></h2></div>
+        <div class="filters">
+          <label class="search-wrap"><span aria-hidden="true">⌕</span><input id="search" type="search" placeholder="Search trophies" aria-label="Search trophies"></label>
+          <label class="select-wrap"><span class="sr-only">Grade</span><select id="grade-filter"><option value="all">All grades</option><option value="platinum">Platinum</option><option value="gold">Gold</option><option value="silver">Silver</option><option value="bronze">Bronze</option></select></label>
+          <label class="select-wrap"><span class="sr-only">Trophy kind</span><select id="kind-filter"><option value="all">All kinds</option></select></label>
+        </div>
       </div>
-      <p class="section-intro">A sensible route from story progress to the final completion sweep. Follow the in-game requirements and watch for the marked missable conditions.</p>
+      <div id="trophy-list" class="trophy-grid"></div>
+      <div id="empty-state" class="empty-state" hidden>No trophies match. Try another search or filter.</div>
+    </section>
+
+    <section id="roadmap-view" class="view-section" hidden>
+      <div class="section-heading">
+        <div><p class="eyebrow">THE LONG WAY HOME</p><h2>Route to platinum</h2></div>
+        <p class="section-caption">An ordered sweep from campaign milestones to the final completion check.</p>
+      </div>
       <div id="roadmap-list" class="roadmap-list"></div>
     </section>
 
-    <section id="guide" class="section-block source-section">
+    <section id="guides-view" class="view-section" hidden>
       <div class="section-heading">
-        <div><p class="eyebrow">READ THE FINE PRINT</p><h2>Field guide &amp; source</h2></div>
+        <div><p class="eyebrow">THE DETAILS THAT COUNT</p><h2>Field guides</h2></div>
+        <p class="section-caption">One focused note for every trophy, built from its bundled requirement.</p>
       </div>
-      <p class="section-intro">Each note follows its trophy’s listed description and guide hint, without adding unverified locations or walkthrough steps.</p>
-      <div id="guide-list" class="field-guide-list"></div>
-      <div class="citation"><span class="citation-mark">↗</span><div><strong>Source: Grand Theft Auto VI — PlayStation 5 official trophy list</strong><span>55 trophies • list dated November 18, 2026 • descriptions and guide hints supplied with this entry</span></div></div>
+      <div id="guide-list" class="guide-grid"></div>
     </section>
   </main>
-  <footer><span>VICE TRACKER</span><span>Made for the long neon road to platinum.</span></footer>
+  <footer><span>VICE TRACKER</span><span>Unofficial companion • No network required</span></footer>
   <div id="status-message" class="status-message" role="status" aria-live="polite"></div>
   <script type="module" src="app.js"></script>
 </body>
